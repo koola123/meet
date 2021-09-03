@@ -17,4 +17,6 @@ describe('<NumberOfEvents /> component', () => {
     const numberOfEvents = NumberOfEventsWrapper.state('numberOfEvents');
     expect(NumberOfEventsWrapper.find('.numberInput').prop('value')).toBe(numberOfEvents);
   });
+
+  
 });
