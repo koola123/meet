@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import EventList from './EventList';
 import CitySearch from './CitySearch';
+import NumberOfEvents from './NumberOfEvents';
 import { extractLocations } from './api';
 import { getEvents } from './api';
 
@@ -10,7 +11,10 @@ import './App.css';
 class App extends Component {
   state = {
     events: [],
-    locations: []
+    locations: [],
+    currentLocation: "all",
+    numberOfEvents: 12,
+
   }
 
   updateEvents = (location) => {
@@ -18,8 +22,9 @@ class App extends Component {
       const locationEvents = (location === 'all') ?
         events :
         events.filter((event) => event.location === location);
+      const { numberOfEvents } = this.state;
       this.setState({
-        events: locationEvents
+        events: locationEvents.slice(0, numberOfEvents)
       });
     });
   }
@@ -38,8 +43,10 @@ class App extends Component {
   }
 
   render() {
+    const { locations, events, numberOfEvents, networkText } = this.state;
     return (
       <div className="App">
+        <NumberOfEvents numberOfEvents={numberOfEvents} updateEventCount={this.updateEventCount} />
         <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
         <EventList events={this.state.events} />
       </div>
