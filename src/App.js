@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import './App.css';
 import EventList from './EventList';
 import CitySearch from './CitySearch';
-import { getEvents, extractLocations } from './api';
+import { extractLocations } from './api';
+import { getEvents } from './api';
+
+import './App.css';
 
 
 class App extends Component {
@@ -12,17 +14,17 @@ class App extends Component {
   }
 
   updateEvents = (location) => {
-  getEvents().then((events) => {
-    const locationEvents = (location === 'all') ?
-      events :
-      events.filter((event) => event.location === location);
-    this.setState({
-      events: locationEvents
+    getEvents().then((events) => {
+      const locationEvents = (location === 'all') ?
+        events :
+        events.filter((event) => event.location === location);
+      this.setState({
+        events: locationEvents
+      });
     });
-  });
-}
+  }
 
-componentDidMount() {
+  componentDidMount() {
     this.mounted = true;
     getEvents().then((events) => {
       if (this.mounted) {
@@ -31,15 +33,15 @@ componentDidMount() {
     });
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     this.mounted = false;
   }
 
   render() {
-    return(
+    return (
       <div className="App">
-      <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
-      <EventList events={this.state.events} />
+        <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
+        <EventList events={this.state.events} />
       </div>
     );
   }

@@ -1,22 +1,16 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import NumberOfEvents from '../NumberOfEvents';
+import NumberofEvents from '../NumberofEvents';
 
-describe('<NumberOfEvents /> component', () => {
+describe('<NumberofEvents /> component', () => {
 
-  let NumberOfEventsWrapper;
+  let numberFilter;
+
   beforeAll(() => {
-    NumberOfEventsWrapper = shallow(<NumberOfEvents />);
+    numberFilter = shallow(<NumberofEvents />);
   });
 
-  test('render text input', () => {
-    expect(NumberOfEventsWrapper.find('.numberInput')).toHaveLength(1);
+  test('render the number of events menu', () => {
+    expect(numberFilter.find('.numberOfEvents')).toHaveLength(1);
   });
-
-  test('render text input correctly', () => {
-    const numberOfEvents = NumberOfEventsWrapper.state('numberOfEvents');
-    expect(NumberOfEventsWrapper.find('.numberInput').prop('value')).toBe(numberOfEvents);
-  });
-
-  
 });
