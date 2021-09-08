@@ -43,7 +43,7 @@ class App extends Component {
   }
 
   render() {
-    const { locations, events, numberOfEvents, networkText } = this.state;
+    const { numberOfEvents } = this.state;
     return (
       <div className="App">
         <NumberOfEvents numberOfEvents={numberOfEvents} updateEventCount={this.updateEventCount} />
