@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
-import { extractLocations } from './api';
-import { getEvents } from './api';
+import { getEvents, extractLocations } from './api';
 
 import './App.css';
 
@@ -22,9 +21,8 @@ class App extends Component {
       const locationEvents = (location === 'all') ?
         events :
         events.filter((event) => event.location === location);
-      const { numberOfEvents } = this.state;
       this.setState({
-        events: locationEvents.slice(0, numberOfEvents)
+        events: locationEvents
       });
     });
   }
