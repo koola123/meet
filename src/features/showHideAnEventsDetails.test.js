@@ -36,7 +36,7 @@ defineFeature(feature, test => {
     });
 
     when('the user clicks on the show details button', () => {
-      EventWrapperfind('.ToggleButton')).at(1).simulate('click');
+      EventWrapperfind('.ToggleButton').at(1).simulate('click');
     });
 
     then('the user will be able to see an events details', () => {
