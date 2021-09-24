@@ -1,16 +1,14 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import NumberofEvents from '../NumberofEvents';
+import NumberOfEvents from '../NumberOfEvents';
 
 describe('<NumberofEvents /> component', () => {
-
-  let numberFilter;
-
+  let NumberOfEventsWrapper;
   beforeAll(() => {
-    numberFilter = shallow(<NumberofEvents />);
+    NumberOfEventsWrapper = shallow(<NumberOfEvents />);
   });
 
-  test('render the number of events menu', () => {
-    expect(numberFilter.find('.numberOfEvents')).toHaveLength(1);
-  });
+  test('textbox is rendered', () => {
+    expect(NumberOfEventsWrapper.find('.EventsNumber')).toHaveLength(1);
+  })
 });

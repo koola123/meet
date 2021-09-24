@@ -1,58 +1,40 @@
-// src/Event.js
-
-import React, { Component } from 'react';
-import moment from 'moment';
-import { Button, Card } from 'react-bootstrap';
-import { mockData } from './mock-data';
+import React, { Component } from "react";
 
 class Event extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      opened: false,
-      mockData: '',
-      event: {}
-    };
-    this.toggleBox = this.toggleBox.bind(this);
-  }
 
-  toggleBox() {
-    const { opened } = this.state;
-    this.setState({
-      opened: !opened,
-    });
-  }
+  state = {
+    show: false,
+  };
 
-  mockData = JSON.parse(JSON.stringify(mockData));
+  handleButton = () => {
+    this.setState((prevState) => ({ show: !prevState.show }));
+  };
 
   render() {
-    var { btnText, event } = this.props;
-    const { opened } = this.state;
-    const eventStart = moment(event.start.dateTime).format('MMMM Do YYYY, h:mm a');
+    let event = this.props.event;
 
-    if (opened) {
-      btnText = 'Hide Details';
-    } else {
-      btnText = 'View Details';
-    }
     return (
-      <Card>
-        <Card.Body>
-          <Card.Title>{event.summary} </Card.Title>
-          <Card.Subtitle className="mb-2 text-muted">{`${eventStart}`}</Card.Subtitle>
-          <Card.Text>{event.location}</Card.Text>
-          <div className="ToggleButtonWrapper">
-            <Button variant="link" className="ToggleButton" onClick={this.toggleBox}>{btnText}</Button>
-          </div>
-          {opened && (
-            <Card.Text className="eventDetails">
-              {event.description}
-            </Card.Text>
+      <div className="Event">
+        <ul>
+          <li className="EventSummary">{event.summary}</li>
+          <li className="EventLocation">{event.location}</li>
+          <li className="EventDate">start: {event.start.dateTime} - Time Zone: {event.start.timeZone}</li>
+          {this.state.show === true && (
+            <p className="EventDetails">{event.description}</p>
           )}
-        </Card.Body>
-      </Card>
+          {this.state.show === false && (
+            <button className="showMore" onClick={() => this.handleButton()}>
+              Show details
+            </button>
+          )}
+          {this.state.show === true && (
+            <button className="showLess" onClick={() => this.handleButton()}>
+              hide details
+            </button>
+          )}
+        </ul>
+      </div>
     );
   }
 }
-
 export default Event;
