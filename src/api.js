@@ -63,7 +63,7 @@ export const getAccessToken = async () => {
     await localStorage.removeItem("access_token");
     const searchParams = new URLSearchParams(window.location.search);
     const code = await searchParams.get("code");
-    if (!code) {
+    if (code) {
       const results = await axios.get(
         `https://sdzyveutib.execute-api.eu-central-1.amazonaws.com/dev/api/token/${code}`
       );
