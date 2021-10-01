@@ -65,7 +65,7 @@ export const getAccessToken = async () => {
     const code = await searchParams.get("code");
     if (!code) {
       const results = await axios.get(
-        "YOUR_SERVERLESS_GET_AUTH_URL_ENDPOINT"
+        "https://sdzyveutib.execute-api.eu-central-1.amazonaws.com/dev/api/token/{code}"
       );
       const { authUrl } = results.data;
       return (window.location.href = authUrl);
@@ -93,7 +93,7 @@ const removeQuery = () => {
 const getToken = async (code) => {
   const encodeCode = encodeURIComponent(code);
   const { access_token } = await fetch(
-    'YOUR_GET_ACCESS_TOKEN_ENDPOINT' + '/' + encodeCode
+    'https://sdzyveutib.execute-api.eu-central-1.amazonaws.com/dev/api/get-events/{access_token}' + '/' + encodeCode
   )
     .then((res) => {
       return res.json();
