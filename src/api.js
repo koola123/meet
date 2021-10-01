@@ -65,7 +65,7 @@ export const getAccessToken = async () => {
     const code = await searchParams.get("code");
     if (!code) {
       const results = await axios.get(
-        "https://sdzyveutib.execute-api.eu-central-1.amazonaws.com/dev/api/token/{code}"
+        `https://sdzyveutib.execute-api.eu-central-1.amazonaws.com/dev/api/token/${code}`
       );
       const { authUrl } = results.data;
       return (window.location.href = authUrl);
