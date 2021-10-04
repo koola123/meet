@@ -17,6 +17,7 @@ export const extractLocations = (events) => {
 };
 
 const checkToken = async (accessToken) => {
+  console.log(accessToken)
   const result = await fetch(
     `https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=${accessToken}`
   )
@@ -62,9 +63,9 @@ export const getAccessToken = async () => {
     await localStorage.removeItem("access_token");
     const searchParams = new URLSearchParams(window.location.search);
     const code = await searchParams.get("code");
-    if (code) {
+    if (!code) {
       const results = await axios.get(
-        `https://sdzyveutib.execute-api.eu-central-1.amazonaws.com/dev/api/token/${code}`
+        'https://sdzyveutib.execute-api.eu-central-1.amazonaws.com/dev/api/get-auth-url'
       );
       const { authUrl } = results.data;
       return (window.location.href = authUrl);
