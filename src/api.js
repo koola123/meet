@@ -44,6 +44,7 @@ export const getEvents = async () => {
     const url = 'https://sdzyveutib.execute-api.eu-central-1.amazonaws.com/dev/api/get-auth-url' + '/' + token;
     const result = await axios.get(url);
     if (result.data) {
+      console.log(result)
       var locations = extractLocations(result.data.events);
       localStorage.setItem("lastEvents", JSON.stringify(result.data));
       localStorage.setItem("locations", JSON.stringify(locations));
