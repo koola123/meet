@@ -59,22 +59,22 @@ module.exports.getAccessToken = async (event) => {
       return resolve(token);
     });
   })
-  .then((token) => {
-    return {
-      statusCode: 200,
-      headers: {
-        'Access-Control-Allow-Origin': '*'
-      },
-      body: JSON.stringify(token),
-    };
-  })
-  .catch((err) => {
-    console.error(err);
-    return {
-      statusCode: 500,
-      body: JSON.stringify(err),
-    };
-  });
+    .then((token) => {
+      return {
+        statusCode: 200,
+        headers: {
+          'Access-Control-Allow-Origin': '*'
+        },
+        body: JSON.stringify(token),
+      };
+    })
+    .catch((err) => {
+      console.error(err);
+      return {
+        statusCode: 500,
+        body: JSON.stringify(err),
+      };
+    });
 };
 
 // GET CALENDAR EVENTS
@@ -106,20 +106,20 @@ module.exports.getCalendarEvents = async (event) => {
       }
     );
   })
-  .then((results) => {
-    return {
-      statusCode: 200,
-      headers: {
-        'Access-Control-Allow-Origin': '*'
-      },
-      body: JSON.stringify({ events: results.data.items }),
-    };
-  })
-  .catch((err) => {
-    console.error(err);
-    return {
-      statusCode: 500,
-      body: JSON.stringify(err),
-    };
-  });
+    .then((results) => {
+      return {
+        statusCode: 200,
+        headers: {
+          'Access-Control-Allow-Origin': '*'
+        },
+        body: JSON.stringify({ events: results.data.items }),
+      };
+    })
+    .catch((err) => {
+      console.error(err);
+      return {
+        statusCode: 500,
+        body: JSON.stringify(err),
+      };
+    });
 };
