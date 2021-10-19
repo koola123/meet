@@ -193,7 +193,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/auth-server/dev/1634033557567-2021-10-12T10:12:37.567Z/auth-server.zip"
+                "S3Key": "serverless/auth-server/dev/1634655852880-2021-10-19T15:04:12.880Z/auth-server.zip"
               },
               "Handler": "handler.getAuthURL",
               "Runtime": "nodejs12.x",
@@ -226,7 +226,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/auth-server/dev/1634033557567-2021-10-12T10:12:37.567Z/auth-server.zip"
+                "S3Key": "serverless/auth-server/dev/1634655852880-2021-10-19T15:04:12.880Z/auth-server.zip"
               },
               "Handler": "handler.getAccessToken",
               "Runtime": "nodejs12.x",
@@ -259,7 +259,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/auth-server/dev/1634033557567-2021-10-12T10:12:37.567Z/auth-server.zip"
+                "S3Key": "serverless/auth-server/dev/1634655852880-2021-10-19T15:04:12.880Z/auth-server.zip"
               },
               "Handler": "handler.getCalendarEvents",
               "Runtime": "nodejs12.x",
@@ -540,7 +540,7 @@
               "GetCalendarEventsLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1634033554897": {
+          "ApiGatewayDeployment1634655850487": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -893,7 +893,7 @@
     "artifact": "/Users/koolau/Documents/myProjects/meet/auth-server/.serverless/auth-server.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/auth-server/dev/1634033557567-2021-10-12T10:12:37.567Z",
+    "artifactDirectoryName": "serverless/auth-server/dev/1634655852880-2021-10-19T15:04:12.880Z",
     "artifact": "auth-server.zip"
   }
 }
