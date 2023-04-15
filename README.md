@@ -13,13 +13,13 @@ To build a serverless, progressive web application (PW) with React using a test-
 ## Key Technologies
 
 - Serverless functions (AWS lambda) for the authorization server instead of using a traditional server.
-- OAuth2 login with Google account
+- OAuth2 Log-in function with Google account
 - TDD Unit and Integration tests written with Jest
 - BDD style User Acceptance tests written with Jest-Cucumber
-- End to End tests written with Puppeteer
+- End-to-End tests written with Puppeteer
 - Data visualization with Recharts
 - Progressive Web Application
-- Bootstrap as a UI library for styling and responsiveness
+- Bootstrap Framework for UI styling and responsiveness
 
 ## Application Features
 
@@ -60,7 +60,8 @@ viewed the last time I was online.
 that I know what events are organized in which city.
 #### Scenario 1: Show a chart with the number of upcoming events in each city
 
-<br/>
+---
+
 
 #### Author: Matthias Müringer
 
