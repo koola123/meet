@@ -59,3 +59,9 @@ viewed the last time I was online.
 - As a user, I would like to be able to see a chart showing the upcoming events in each city so
 that I know what events are organized in which city.
 #### Scenario 1: Show a chart with the number of upcoming events in each city
+
+<br/>
+
+#### Author: Matthias Müringer
+
+#### Version: 1.0.0
