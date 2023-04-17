@@ -57,9 +57,3 @@ viewed the last time I was online.
 that I know what events are organized in which city.
 #### Scenario 1: Show a chart with the number of upcoming events in each city
 
----
-
-
-#### Author: Matthias Müringer
-
-#### Version: 1.0.0
