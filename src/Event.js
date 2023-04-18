@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const Event = () => {
-    return (
-        <div className="Event">
-
-        </div>
-    );
+class Event extends Component {
+    render() {
+        return(
+            <div className="Event"></div>
+        )
+    };
 };
 
 export default Event;

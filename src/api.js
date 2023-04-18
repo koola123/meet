@@ -1,3 +1,4 @@
+
 /**
  *
  * @param {*} events:
@@ -6,9 +7,11 @@
  * It will also remove all duplicates by creating another new array using the spread operator and spreading a Set.
  * The Set will remove all duplicates from the array.
  */
-export const extractLocations = (events) => {
+const extractLocations = (events) => {
     let extractLocations = events.map((event) => event.location);
     // we want to remove any duplicates from the extractLocations array
     let locations = [...new Set(extractLocations)];
     return locations;
   };
+
+  export default extractLocations;
