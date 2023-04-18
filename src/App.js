@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import EventList from './EventList';
 import CitySearch from './CitySearch';
+import NumberOfEvents from './NumberOfEvents';
 
 class App extends Component {
 
@@ -18,6 +19,7 @@ class App extends Component {
       <h4>Choose your nearest city</h4>
       <CitySearch suggestions={this.state.locations}/>
       <EventList events={this.state.events} />
+      <NumberOfEvents/>
      </div>
     );
   };
