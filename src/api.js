@@ -1,4 +1,3 @@
-
 /**
  *
  * @param {*} events:
@@ -8,9 +7,9 @@
  * The Set will remove all duplicates from the array.
  */
 const extractLocations = (events) => {
-    let extractLocations = events.map((event) => event.location);
+    var extractLocations = events.map((event) => event.location);
     // we want to remove any duplicates from the extractLocations array
-    let locations = [...new Set(extractLocations)];
+    var locations = [...new Set(extractLocations)];
     return locations;
   };
 
