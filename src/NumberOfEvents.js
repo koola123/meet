@@ -24,7 +24,6 @@ class NumberOfEvents extends Component {
             value={this.state.query}
             onChange={this.handleInputChanged}
             />
-
             </div>
         );
     };

@@ -5,26 +5,50 @@ import mockData from '../mock-data';
 
 
 describe('<Event /> component', () => {
-    let EventWrapper;
+    let EventWrapper, event;
 beforeAll(() => {
-    EventWrapper = shallow(<Event mockData={mockData} />)
+    event = mockData[0];
+    EventWrapper = shallow(<Event event={event} />)
 });
 
-test('render event container', () => {
-    expect(EventWrapper.find('.event-container')).toHaveLength(1);
+test('render summary title correctly', () => {
+    const summary = EventWrapper.find('h2');
+    const summaryString = event.summary;
+    expect(summary).toBeDefined();
+    expect(summary.text()).toBe(summaryString);
 });
 
-test('render details button', () => {
-    expect(EventWrapper.find('.details')).toHaveLength(1);
+test('render start time correctly', () => {
+    const eventStart = EventWrapper.find('p');
+    const dateString = event.start.dateTime;
+    expect(eventStart).toBeDefined();
+    expect(eventStart.text()).toBe(dateString);
 });
 
-test('render button title correctly', () => {
-    const title = 'show details';
-    expect(EventWrapper.find('.details').text()).toEqual(title);
+test('render location correctly', () => {
+    const eventLocation = EventWrapper.find('p');
+    const eventLocationString = event.location;
+    expect(eventLocation).toBeDefined();
+    expect(eventLocation).text().toBe(`Location: ${eventLocationString}`);
 });
 
-test('extra info is shown when clicking the button', () => {
-    EventWrapper.find('.details').simulate('click');
+test('details is initially collapsed, children hidden, details-btn text is "shown details',() => {
+    const detailsButton = EventWrapper.find('.details-btn');
+    expect(EventWrapper.state('collapsed')).toBe(true);
+    expect(detailsButton).toBeDefined();
+    expect(detailsButton.text()).toBe('show details');
+    expect(EventWrapper.find('.about')).toHaveLength(0);
+    expect(EventWrapper.find('.link')).toHaveLength(0);
+    expect(EventWrapper.find('.description')).toHaveLength(0);
+});
+
+test('details is expanded (collapsed=false) on click', () => {
+    const detailsButton = EventWrapper.find('.details-btn');
+    detailsButton.simulate('click');
+    expect(EventWrapper.find('.about')).toHaveLength(1);
+    expect(EventWrapper.find('.link')).toHaveLength(1);
+    expect(EventWrapper.find('.description')).toHaveLength(1);
+    expect(EventWrapper.state('collapsed')).toBe(false);
 });
 
 });
