@@ -8,24 +8,25 @@ describe('<NumberOfEvents /> component', () => {
       NumberOfEventsWrapper = shallow(<NumberOfEvents />);
     });
 
-test('render text input', () => {
+test('render number of events input', () => {
     expect(NumberOfEventsWrapper.find('.numberOfEvents')).toHaveLength(1);
 });
 
-test('render title of number of events input', () => {
+test('render number of events input title', () => {
     expect(NumberOfEventsWrapper.find('h3').text()).toEqual('Number of Events:');
 });
 
-test('render default number of events is 32', () => {
-    expect(NumberOfEventsWrapper.find('.numberOfEvents').prop('value')).toEqual(32);
+test('number of events input is a number type', () => {
+    expect(NumberOfEventsWrapper.find('.numberOfEvents').prop('type')).toBe('number');
 });
 
-test('', () => {
-
+test('number of events input number is by default 32', () => {
+    expect(NumberOfEventsWrapper.state('query')).toEqual(32);
 });
 
-test('', () => {
-
+test('change number of events input when changed', () => {
+    const query = NumberOfEventsWrapper.state('query');
+    expect(NumberOfEventsWrapper.find('.numberOfEvents').prop('value')).toBe(query);
 });
 
 
