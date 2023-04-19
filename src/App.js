@@ -8,8 +8,7 @@ class App extends Component {
 
   state = {
     events: [],
-    locations: [],
-
+    locations: []
   }
 
   render() {
@@ -17,7 +16,7 @@ class App extends Component {
       <div className="App">
       <h1>Meet App</h1>
       <h4>Choose your nearest city</h4>
-      <CitySearch suggestions={this.state.locations}/>
+      <CitySearch locations={this.state.locations}/>
       <EventList events={this.state.events} />
       <NumberOfEvents/>
      </div>
