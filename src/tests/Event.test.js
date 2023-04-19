@@ -23,8 +23,8 @@ test('render button title correctly', () => {
     expect(EventWrapper.find('.details').text()).toEqual(title);
 });
 
-// test('simulate click event on button', () => {
-//     expect(EventWrapper.find('.details')).simulate('click');
-// });
+test('extra info is shown when clicking the button', () => {
+    EventWrapper.find('.details').simulate('click');
+});
 
 });
