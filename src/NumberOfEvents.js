@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class NumberOfEvents extends Component {
     state = {
-        query: 32,
+        errorText: '',
         numberOfEvents: this.props.numberOfEvents,
         updateEvents: this.props.UpdateEvents
     };
