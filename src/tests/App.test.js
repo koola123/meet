@@ -36,6 +36,14 @@ describe("<App /> integration", () => {
     AppWrapper.unmount();
   });
 
+  test('App passes "number of events state" to NumberOfEvents', () => {
+    const AppWrapper = mount(<App />);
+    const NumberOfEventsState = AppWrapper.state("numberOfEvents");
+    expect(NumberOfEventsState).not.toEqual(undefined);
+    expect(AppWrapper.find(NumberOfEvents).props().numberOfEvents).toEqual(NumberOfEventsState);
+    AppWrapper.unmount();
+  });
+
   test('App passes "locations" state as a prop to CitySearch', () => {
     const AppWrapper = mount(<App />);
     const AppLocationsState = AppWrapper.state("locations");
@@ -71,4 +79,17 @@ describe("<App /> integration", () => {
     expect(AppWrapper.state("events")).toEqual(allEvents);
     AppWrapper.unmount();
   });
+
+  test('NumberOfEvents input is changed and the value is reflected correctly', async () => {
+    const AppWrapper = mount(<App />);
+    const numberOfEvents = AppWrapper.find(NumberOfEvents).find("input");
+    await numberOfEvents.simulate("change", { target: { value: 20 }});
+    expect(AppWrapper.state("numberOfEvents")).toEqual(20);
+    AppWrapper.unmount();
+
+  });
+
+ 
+  
+
 });
