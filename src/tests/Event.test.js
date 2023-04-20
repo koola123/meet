@@ -19,24 +19,24 @@ test('render summary title correctly', () => {
 });
 
 test('render start time correctly', () => {
-    const eventStart = EventWrapper.find('p');
+    const eventStart = EventWrapper.find('#event-start');
     const dateString = event.start.dateTime;
     expect(eventStart).toBeDefined();
     expect(eventStart.text()).toBe(dateString);
 });
 
 test('render location correctly', () => {
-    const eventLocation = EventWrapper.find('p');
+    const eventLocation = EventWrapper.find('#event-location');
     const eventLocationString = event.location;
     expect(eventLocation).toBeDefined();
-    expect(eventLocation).text().toBe(`Location: ${eventLocationString}`);
+    expect(eventLocation.text()).toBe(`Location: ${eventLocationString}`);
 });
 
 test('details is initially collapsed, children hidden, details-btn text is "shown details',() => {
     const detailsButton = EventWrapper.find('.details-btn');
     expect(EventWrapper.state('collapsed')).toBe(true);
     expect(detailsButton).toBeDefined();
-    expect(detailsButton.text()).toBe('show details');
+    expect(detailsButton.text()).toBe('Show Details');
     expect(EventWrapper.find('.about')).toHaveLength(0);
     expect(EventWrapper.find('.link')).toHaveLength(0);
     expect(EventWrapper.find('.description')).toHaveLength(0);

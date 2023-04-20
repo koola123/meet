@@ -19,8 +19,8 @@ class Event extends Component {
         return(
             <div className="Event">
                 <h2>{event.summary}</h2>
-                <p>{event.start.dateTime}</p>
-                <p>{`Location: ${event.location}`}</p>
+                <p id="event-start">{event.start.dateTime}</p>
+                <p id="event-location">{`Location: ${event.location}`}</p>
                 {!collapsed && (
                     <div className="event-details">
                         <h3 className="about">About this event:</h3>

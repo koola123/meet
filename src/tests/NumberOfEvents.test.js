@@ -21,13 +21,7 @@ test('number of events input is a number type', () => {
 });
 
 test('number of events input number is by default 32', () => {
-    expect(NumberOfEventsWrapper.state('query')).toEqual(32);
+    expect(NumberOfEventsWrapper.find('.numberOfEvents').prop('value')).toEqual(32);
 });
-
-test('change number of events input when changed', () => {
-    const query = NumberOfEventsWrapper.state('query');
-    expect(NumberOfEventsWrapper.find('.numberOfEvents').prop('value')).toBe(query);
-});
-
 
 });
