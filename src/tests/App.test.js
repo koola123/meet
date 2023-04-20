@@ -73,23 +73,28 @@ describe("<App /> integration", () => {
 
   test('get a list of all events when user selects "See all cities"', async () => {
     const AppWrapper = mount(<App />);
-    const suggestionItems = AppWrapper.find(CitySearch).find(".suggestions li");
-    await suggestionItems.at(suggestionItems.length - 1).simulate("click");
+    const suggestionItems = AppWrapper.find(CitySearch).find('.suggestions li');
+    await suggestionItems.at(suggestionItems.length - 1).simulate('click');
     const allEvents = await getEvents();
-    expect(AppWrapper.state("events")).toEqual(allEvents);
+    expect(AppWrapper.state('events')).toEqual(allEvents);
     AppWrapper.unmount();
   });
 
   test('NumberOfEvents input is changed and the value is reflected correctly', async () => {
     const AppWrapper = mount(<App />);
-    const numberOfEvents = AppWrapper.find(NumberOfEvents).find("input");
-    await numberOfEvents.simulate("change", { target: { value: 20 }});
-    expect(AppWrapper.state("numberOfEvents")).toEqual(20);
+    const numberOfEventsInput = AppWrapper.find(NumberOfEvents).find('input');
+    await numberOfEventsInput.simulate('change', { target: { value: 20 }});
+    expect(AppWrapper.state('numberOfEvents')).toEqual(20);
     AppWrapper.unmount();
-
   });
 
- 
-  
+  test('NumberOfEvents input value is reflected correctly in the event list', async () => {
+    const AppWrapper = mount(<App />);
+    await getEvents();
+    const numberOfEventsInput = AppWrapper.find(NumberOfEvents).find('input');
+    await numberOfEventsInput.simulate('change', { target: { value: 2 }});
+    expect(AppWrapper.state('events')).toHaveLength(2);
+    AppWrapper.unmount();
+  });
 
 });
