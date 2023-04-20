@@ -3,7 +3,7 @@ To build a serverless, progressive web application (PW) with React using a test-
 
 ## How to run the App
 
-👉🏻 L I V E - D E M O
+L I V E - D E M O
 
 #### Installation: Clone Repo --> Install node modules (npm install) and run it (npm start). Don't forget to also install nodejs LTS or the latest version.
 
