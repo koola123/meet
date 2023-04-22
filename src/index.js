@@ -23,6 +23,5 @@ serviceWorkerRegistration.unregister();
 // to log results (for example: reportWebVitals(console.log))
 reportWebVitals();
 
-atatus.notify(new Error('Test Atatus Setup'));
 
 
