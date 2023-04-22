@@ -8,13 +8,19 @@ import NumberOfEvents from "../NumberOfEvents";
 const feature = loadFeature("./src/features/specifyNumberOfEvents.feature");
 
 defineFeature(feature, (test) => {
-  let NumberOfEventsWrapper, numberOfEventsInput;
-  beforeAll(() => {
+  let NumberOfEventsWrapper, AppWrapper, numberOfEventsInput;
+
+  beforeEach(() => {
+    AppWrapper = mount(<App />);
     NumberOfEventsWrapper = shallow(
       <NumberOfEvents numberOfEvents={32} updateNumberOfEvents={() => {}} />
     );
     numberOfEventsInput = NumberOfEventsWrapper.find(".numberOfEvents");
   });
+
+  afterEach(() => {
+    AppWrapper.unmount();
+  })
 
   test("When user hasn’t specified a number, 32 is the default number", ({
     given,
@@ -30,6 +36,7 @@ defineFeature(feature, (test) => {
       () => {
         expect(NumberOfEventsWrapper.find(".numberOfEvents").prop("type")).toBe("number");
         expect(NumberOfEventsWrapper.find(".numberOfEvents").prop("value")).toEqual(32);
+        expect(AppWrapper.find(Event).length).toBe(32);
       }
     );
   });
@@ -55,7 +62,7 @@ defineFeature(feature, (test) => {
     then(
       "user will receive the “typed” number of upcoming events on the screen",
       () => {
-        expect(AppWrapper.state("events")).toHaveLength(2);
+        expect(AppWrapper.find(Event)).toHaveLength(20);
         AppWrapper.unmount();
       }
     );

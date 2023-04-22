@@ -1,23 +1,31 @@
 import { loadFeature, defineFeature } from "jest-cucumber";
 import React from "react";
-import { shallow } from "enzyme";
+import { shallow, mount } from "enzyme";
 import mockData from "../mock-data";
 import Event from "../Event";
+import App from "../App";
 
 const feature = loadFeature("./src/features/showHideAnEventsDetails.feature");
 
 defineFeature(feature, (test) => {
-  let EventWrapper, event;
+  let EventWrapper, AppWrapper, event;
 
-  beforeAll(() => {
+  beforeEach(() => {
     event = mockData[0];
+    AppWrapper = mount(<App />);
     EventWrapper = shallow(<Event event={event} />);
   });
+
+  afterEach(() => {
+    AppWrapper.unmount();
+  })
 
   test("An event element is collapsed by default", ({ given, when, then }) => {
     given("the main page was open", () => {});
 
-    when("the user see list of events are loaded", () => {});
+    when("the user see list of events are loaded", () => {
+        expect(AppWrapper.find(Event).length).not.toBe(0);
+    });
 
     then("the details of the events are invisible", () => {
       const detailsButton = EventWrapper.find(".details-btn");
@@ -69,7 +77,9 @@ defineFeature(feature, (test) => {
 
     and(
       "the user clicked on the “Show Details” button on any of the event card",
-      () => {}
+      () => {
+        EventWrapper.simulate('click');
+      }
     );
 
     when(
