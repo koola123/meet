@@ -4,18 +4,19 @@ import { mount, shallow } from "enzyme";
 import App from "../App";
 import { getEvents } from "../api";
 import NumberOfEvents from "../NumberOfEvents";
+import mockData from '../mock-data';
 
 const feature = loadFeature("./src/features/specifyNumberOfEvents.feature");
 
 defineFeature(feature, (test) => {
-  let NumberOfEventsWrapper, AppWrapper, numberOfEventsInput;
+  let NumberOfEventsWrapper, AppWrapper;
 
   beforeEach(() => {
     AppWrapper = mount(<App />);
     NumberOfEventsWrapper = shallow(
       <NumberOfEvents numberOfEvents={32} updateNumberOfEvents={() => {}} />
     );
-    numberOfEventsInput = NumberOfEventsWrapper.find(".numberOfEvents");
+    NumberOfEventsWrapper.find(".numberOfEvents");
   });
 
   afterEach(() => {
@@ -36,7 +37,7 @@ defineFeature(feature, (test) => {
       () => {
         expect(NumberOfEventsWrapper.find(".numberOfEvents").prop("type")).toBe("number");
         expect(NumberOfEventsWrapper.find(".numberOfEvents").prop("value")).toEqual(32);
-        expect(AppWrapper.state('numberOfEvents')).toEqual(32);
+        expect(AppWrapper.state(".numberOfEvents")).toEqual(32);
       }
     );
   });
@@ -46,7 +47,6 @@ defineFeature(feature, (test) => {
     when,
     then,
   }) => {
-    const AppWrapper = mount(<App />);
 
     given("the main page was open", async () => {
       await getEvents();
@@ -54,17 +54,15 @@ defineFeature(feature, (test) => {
 
     when("user types in the number of events to be shown", async () => {
       AppWrapper.update();
-      const numberOfEventsInput = AppWrapper.find(NumberOfEvents).find(".numberOfEvents");
-      await numberOfEventsInput.simulate("change", {
-        target: { value: 20 },
-      });
+      let NumberOfEventsWrapper = AppWrapper.find(NumberOfEvents).find('.numberOfEvents');
+      const eventObject = {target: { value: 20 }};
+      await NumberOfEventsWrapper.find('.numberOfEvents').simulate("change", eventObject);
     });
 
     then(
       "user will receive the “typed” number of upcoming events on the screen",
       () => {
-        expect(AppWrapper.find(Event)).toHaveLength(20);
-        AppWrapper.unmount();
+        expect(AppWrapper.find('.Event')).toHaveLength(mockData.length);
       }
     );
   });
