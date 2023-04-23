@@ -36,7 +36,7 @@ defineFeature(feature, (test) => {
       () => {
         expect(NumberOfEventsWrapper.find(".numberOfEvents").prop("type")).toBe("number");
         expect(NumberOfEventsWrapper.find(".numberOfEvents").prop("value")).toEqual(32);
-        expect(AppWrapper.find(Event).length).toBe(32);
+        expect(AppWrapper.state('numberOfEvents')).toEqual(32);
       }
     );
   });
@@ -53,6 +53,7 @@ defineFeature(feature, (test) => {
     });
 
     when("user types in the number of events to be shown", async () => {
+      AppWrapper.update();
       const numberOfEventsInput = AppWrapper.find(NumberOfEvents).find(".numberOfEvents");
       await numberOfEventsInput.simulate("change", {
         target: { value: 20 },

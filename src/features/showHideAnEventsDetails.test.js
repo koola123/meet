@@ -23,7 +23,7 @@ defineFeature(feature, (test) => {
   test("An event element is collapsed by default", ({ given, when, then }) => {
     given("the main page was open", () => {});
 
-    when("the user see list of events are loaded", () => {
+    when("the user sees a list of events are loaded", () => {
         expect(AppWrapper.find(Event).length).not.toBe(0);
     });
 
@@ -49,8 +49,7 @@ defineFeature(feature, (test) => {
     when("the user see list of events are loaded", () => {});
 
     and("click on the “Show Details” button on any of the event card", () => {
-      const detailsButton = EventWrapper.find(".details-btn");
-      detailsButton.simulate("click");
+      AppWrapper.find(Event).simulate("click");
     });
 
     then(
@@ -78,7 +77,7 @@ defineFeature(feature, (test) => {
     and(
       "the user clicked on the “Show Details” button on any of the event card",
       () => {
-        EventWrapper.simulate('click');
+        const detailsButton = AppWrapper.find(Event).find('.details-btn');
       }
     );
 

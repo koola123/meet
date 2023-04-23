@@ -2,12 +2,13 @@ import React, { Component } from "react";
 
 class NumberOfEvents extends Component {
   state = {
+    numberOfEvents: 32,
     errorText: "",
   };
 
   handleInputChanged = (event) => {
     const value = event.target.value;
-    if (value < 1 || value > 32) {
+    if (value < 0 || value > 32) {
       this.setState({
         errorText: "Please specify a number between 1-32.",
       });
@@ -28,7 +29,7 @@ class NumberOfEvents extends Component {
         <input
           type="number"
           className="numberOfEvents"
-          value={this.props.numberOfEvents ? this.props.numberOfEvents : 32}
+          value={this.state.numberOfEvents}
           onChange={(event) => this.handleInputChanged(event)}
         />
       </div>

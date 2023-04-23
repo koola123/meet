@@ -7,7 +7,7 @@ Then the details of the events are invisible
 
 Scenario: User can expand an event to see its details
 Given the main page was open
-When the user see list of events are loaded
+When the user sees a list of events are loaded
 And click on the “Show Details” button on any of the event card
 Then specific event is being expanded with details and the „Show Details” button is replace by the „Hide Details” button
 
