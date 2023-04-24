@@ -2,7 +2,7 @@ Feature: Show/hide an event's details
 
 Scenario: An event element is collapsed by default
 Given the main page was open 
-When the user see list of events are loaded
+When the user sees a list of events are loaded
 Then the details of the events are invisible
 
 Scenario: User can expand an event to see its details

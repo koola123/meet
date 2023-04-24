@@ -1,19 +1,16 @@
 import { loadFeature, defineFeature } from "jest-cucumber";
 import React from "react";
-import { shallow, mount } from "enzyme";
-import mockData from "../mock-data";
+import { mount } from "enzyme";
 import Event from "../Event";
 import App from "../App";
 
 const feature = loadFeature("./src/features/showHideAnEventsDetails.feature");
 
 defineFeature(feature, (test) => {
-  let EventWrapper, AppWrapper, event;
+  let AppWrapper;
 
   beforeEach(() => {
-    event = mockData[0];
     AppWrapper = mount(<App />);
-    EventWrapper = shallow(<Event event={event} />);
   });
 
   afterEach(() => {
@@ -21,20 +18,21 @@ defineFeature(feature, (test) => {
   })
 
   test("An event element is collapsed by default", ({ given, when, then }) => {
-    given("the main page was open", () => {});
+
+    given("the main page was open", async () => {
+      await AppWrapper.update();
+    });
  
     when("the user sees a list of events are loaded", () => {
-        expect(AppWrapper.find(Event).length).not.toBe(0);
+        expect(AppWrapper.find(Event).length).toBeGreaterThan(0);
     });
 
     then("the details of the events are invisible", () => {
-      const detailsButton = EventWrapper.find(".details-btn");
-      expect(EventWrapper.state("collapsed")).toBe(true);
-      expect(detailsButton).toBeDefined();
-      expect(detailsButton.text()).toBe("Show Details");
-      expect(EventWrapper.find(".about")).toHaveLength(0);
-      expect(EventWrapper.find(".link")).toHaveLength(0);
-      expect(EventWrapper.find(".description")).toHaveLength(0);
+      AppWrapper.find(Event).forEach(eventComponent => { 
+        expect(eventComponent.find('.event-details')).toHaveLength(0);
+        expect(eventComponent.state('collapsed')).toBe(true);
+        expect(eventComponent.find('.details-btn').text()).toBe('Show Details');
+      });
     });
   });
 
@@ -44,24 +42,24 @@ defineFeature(feature, (test) => {
     and,
     then,
   }) => {
-    given("the main page was open", () => {});
+    given("the main page was open", async () => {
+      await AppWrapper.update();
+    });
 
-    when("the user see list of events are loaded", () => {});
+    when("the user sees a list of events are loaded", () => {
+      expect(AppWrapper.find(Event).length).toBeGreaterThan(0);
+    });
 
     and("click on the “Show Details” button on any of the event card", () => {
-      AppWrapper.find(Event).simulate("click");
+      AppWrapper.find(Event).at(0).find('.details-btn').simulate('click');
     });
 
     then(
       "specific event is being expanded with details and the „Show Details” button is replace by the „Hide Details” button",
       () => {
-        expect(EventWrapper.find(".about")).toHaveLength(1);
-        expect(EventWrapper.find(".link")).toHaveLength(1);
-        expect(EventWrapper.find(".description")).toHaveLength(1);
-        expect(EventWrapper.state("collapsed")).toBe(false);
-        expect(EventWrapper.find(".details-btn").text()).toBe(
-          "Hide Details"
-        );
+        expect(AppWrapper.find(Event).at(0).find('.event-details')).toHaveLength(1);
+        expect(AppWrapper.find(Event).at(0).state('collapsed')).toBe(false);
+        expect(AppWrapper.find(Event).at(0).find('.details-btn').text()).toBe('Hide Details');
       }
     );
   });
@@ -72,33 +70,30 @@ defineFeature(feature, (test) => {
     when,
     then,
   }) => {
-    given("the main page was open", () => {});
-
+    given("the main page was open", async () => {
+      await AppWrapper.update();
+    });
+    
     and(
       "the user clicked on the “Show Details” button on any of the event card",
       () => {
-        AppWrapper.find(Event).find('.details-btn');
+        AppWrapper.find(Event).at(0).find('.details-btn').simulate('click');
       }
     );
 
     when(
       "user clicks on the “Hide Details” button on any of the event cards that were clicked in the previous step",
       () => {
-        const detailsButton = EventWrapper.find(".details-btn");
-        detailsButton.simulate("click");
+        AppWrapper.find(Event).at(0).find('.details-btn').simulate('click');
       }
     );
 
     then(
       "the specific event is being collapsed and the event card will be shown without details",
       () => {
-        expect(EventWrapper.state("collapsed")).toBe(true);
-        expect(EventWrapper.find(".about")).toHaveLength(0);
-        expect(EventWrapper.find(".link")).toHaveLength(0);
-        expect(EventWrapper.find(".description")).toHaveLength(0);
-        expect(EventWrapper.find(".details-btn").text()).toBe(
-          "Show Details"
-        );
+        expect(AppWrapper.find(Event).at(0).find('.event-details')).toHaveLength(0);
+        expect(AppWrapper.find(Event).at(0).state('collapsed')).toBe(true);
+        expect(AppWrapper.find(Event).at(0).find('.details-btn').text()).toBe('Show Details');
       }
     );
   });
