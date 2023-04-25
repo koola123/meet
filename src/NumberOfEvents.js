@@ -24,7 +24,7 @@ class NumberOfEvents extends Component {
 
   render() {
     return (
-      <div>
+      <div style={{ position: "relative"}}>
         <h3 className="title">Number of Events:</h3>
         <input
           type="number"

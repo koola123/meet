@@ -213,7 +213,7 @@ input[type="number"] {
 .error-alert-msg {
   width: 250px;
   position: absolute;
-  top: 37%;
+  top: 90px;
   left: 50%;
   transform: translate(-45%);
 }
