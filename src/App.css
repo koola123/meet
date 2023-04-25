@@ -206,6 +206,18 @@ input[type="number"] {
   font-family: "Roboto";
 }
 
+.numberOfEvents {
+  margin-bottom: 70px;
+}
+
+.error-alert-msg {
+  width: 250px;
+  position: absolute;
+  top: 37%;
+  left: 50%;
+  transform: translate(-45%);
+}
+
 @media only screen and (min-width: 992px) {
   .data-vis-wrapper {
     flex-direction: row;
