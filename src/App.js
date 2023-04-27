@@ -7,8 +7,8 @@ import { getEvents } from "./api";
 import extractLocations from "./api";
 import "./nprogress.css";
 import { WarningAlert } from "./Alert";
-import WelcomeScreen from './WelcomeScreen';
-import { checkToken, getAccessToken } from './api';
+import WelcomeScreen from "./WelcomeScreen";
+import { checkToken, getAccessToken } from "./api";
 
 class App extends Component {
   constructor(props) {
@@ -19,37 +19,33 @@ class App extends Component {
       selectedLocation: "all",
       numberOfEvents: 32,
       offlineText: "",
-      showWelcomeScreen: undefined
+      showWelcomeScreen: undefined,
     };
   }
 
   async componentDidMount() {
     this.mounted = true;
-    const accessToken = localStorage.getItem('access_token');
-    const isTokenValid = (await checkToken(accessToken)).error ?  false : true;
+    const accessToken = localStorage.getItem("access_token");
+    const isTokenValid =
+      !window.location.href.startsWith("http://localhost") &&
+      !(accessToken && !navigator.onLine) &&
+      (await checkToken(accessToken)).error
+        ? false
+        : true;
     const searchParams = new URLSearchParams(window.location.search);
-    const code = searchParams.get('code');
-    this.setState({ showWelcomeScreen: !(code || isTokenValid) });
-    if ((code || isTokenValid) && this.mounted) {
-      getEvents().then((events) => {
-        if (this.mounted) {
-          this.setState({ events, locations: extractLocations(events) });
-        }
-      });
-    }
-    
+    const code = searchParams.get("code");
+    const byPassWelcomeScreen = code || isTokenValid;
+
+    this.setState({ showWelcomeScreen: !byPassWelcomeScreen });
+
     getEvents().then((events) => {
       if (this.mounted) {
         this.setState({
-          events: events,
+          events: events.slice(0,32),
           locations: extractLocations(events),
         });
       }
     });
-  }
-
-  componentWillUnmount() {
-    this.mounted = false;
   }
 
   updateEvents = (
@@ -78,25 +74,30 @@ class App extends Component {
     }
   };
 
+  componentWillUnmount() {
+    this.mounted = false;
+  }
+
   render() {
-    if (this.state.showWelcomeScreen === undefined) return <div className="App"/>
-    
+    if (this.state.showWelcomeScreen === undefined) return <div className="App" />
+
     return (
-      <div className="App">
-        <h1>Meet App</h1>
-        <WarningAlert text={this.state.offlineText} />
-        <h4>Choose your nearest city</h4>
-        <CitySearch
-          locations={this.state.locations}
-          updateEvents={this.updateEvents}
-        />
-        <NumberOfEvents
-          numberOfEvents={this.state.numberOfEvents}
-          updateEvents={this.updateEvents}
-        />
-        <EventList events={this.state.events} />
-        <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => getAccessToken()} />
-      </div>
+      this.state.showWelcomeScreen
+        ? <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen} getAccessToken={() => getAccessToken()} />
+        : <div className="App">
+          <h1>Meet App</h1>
+          <WarningAlert text={this.state.offlineText} />
+          <h4>Choose your nearest city</h4>
+          <CitySearch
+            locations={this.state.locations}
+            updateEvents={this.updateEvents}
+          />
+          <NumberOfEvents
+            numberOfEvents={this.state.numberOfEvents}
+            updateEvents={this.updateEvents}
+          />
+          <EventList events={this.state.events} />
+        </div>
     );
   }
 }
