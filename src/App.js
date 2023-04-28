@@ -16,7 +16,11 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
+  ResponsiveContainer
 } from "recharts";
+import EventGenre from './EventGenre';
+
+
 
 class App extends Component {
   constructor(props) {
@@ -45,16 +49,17 @@ class App extends Component {
     const byPassWelcomeScreen = code || isTokenValid;
 
     this.setState({ showWelcomeScreen: !byPassWelcomeScreen });
-    console.log(code, isTokenValid, this.mounted)
 
-    getEvents().then((events) => {
-      if (this.mounted) {
-        this.setState({
-          events: events.slice(0, 32),
-          locations: extractLocations(events),
-        });
-      }
-    });
+    if (byPassWelcomeScreen) {
+      getEvents().then((events) => {
+        if (this.mounted) {
+          this.setState({
+            events: events.slice(0,32),
+            locations: extractLocations(events),
+          });
+        }
+      });
+    }
   }
 
   updateEvents = (
@@ -122,10 +127,10 @@ class App extends Component {
           updateEvents={this.updateEvents}
         />
         <div className="events-in-each-city-txt"><b>Events in each city</b></div>
+        <div className="data-vis-wrapper">
+          <EventGenre events={this.state.events} />
+          <ResponsiveContainer height={400}>
           <ScatterChart
-            className="scatterChart"
-            width={800}
-            height={400}
             margin={{
               top: 20,
               right: 20,
@@ -139,6 +144,8 @@ class App extends Component {
             <Tooltip cursor={{ strokeDasharray: "3 3" }} />
             <Scatter data={this.getData()} fill="#8884d8" />
           </ScatterChart>
+          </ResponsiveContainer>
+          </div>
         <EventList events={this.state.events} />
       </div>
     );

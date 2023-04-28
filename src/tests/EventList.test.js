@@ -12,9 +12,10 @@ describe("<EventList /> component", () => {
   });
 });
 
-describe("<EventList integration", () => {
-  test("when the App component is rendered, then the number of Event components rendered by default is 32", () => {
-   const AppWrapper = mount(<App />);
-    expect(AppWrapper.state("numberOfEvents")).toBe(32);
+describe("<EventList /> integration", () => {
+  test("the default number of Event components rendered is 32", async () => {
+   const AppWrapper = await mount(<App />);
+   await AppWrapper.update();
+    expect(AppWrapper.find(Event)).toHaveLength(32);
   });
 });
