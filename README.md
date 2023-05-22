@@ -3,22 +3,26 @@ To build a serverless, progressive web application (PW) with React using a test-
 
 <br>
 
-# Demo Images:
+<b>[LIVE DEMO](https://koola123.github.io/meet/)</b>
 
 ![Meet App Image](img/meet.png)
 ![Meet App Image](img/meet1.png)
 ![Meet App Image](img/meet2.png)
 
+## Getting Started:
 
-<br>
+### Installation
 
-## How to run the App
-<b>[LIVE DEMO](https://koola123.github.io/meet/)</b>
+```
+git clone https://github.com/koola123/meet.git
+cd meet
+npm install
+npm run start
+```
 
-## How to run the App
 
 
-#### Installation: Clone Repo --> Install node modules (npm install) and run it (npm start). Don't forget to also install nodejs LTS or the latest version.
+Don't forget to also install nodejs LTS or the latest version.
 
 <br>
 
