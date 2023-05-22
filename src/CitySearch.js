@@ -4,7 +4,7 @@ import { InfoAlert } from './Alert';
 class CitySearch extends Component {
   state = {
     query: "",
-    suggestions: [],
+    suggestions: []
   };
 
   handleInputChanged = (event) => {
@@ -63,7 +63,7 @@ class CitySearch extends Component {
               key={suggestion}
               onClick={() => this.handleItemClicked(suggestion)}
             >
-              {suggestion}
+           
             </li>
           ))}
           <li onClick={() => this.handleItemClicked("all")}>
