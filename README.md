@@ -7,7 +7,7 @@ To build a serverless, progressive web application (PW) with React using a test-
 ![Meet App Image](img/meet1.png)
 ![Meet App Image](img/meet2.png)
 
-## Key Technologies:
+## 🎯 Technology stack:
 
 - Serverless functions (AWS lambda) for the authorization server instead of using a traditional server.
 - OAuth2 Log-in function with Google account
