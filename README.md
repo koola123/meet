@@ -70,8 +70,8 @@ cd meet
 npm install
 npm run start
 ```
-
-<strong> ⚠️ Don't forget to also install nodejs LTS or the latest version!</strong>
+# ⚠️ Important:
+<strong>Don't forget to also install nodejs LTS or the latest version!</strong>
 
 
 <br>
