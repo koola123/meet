@@ -1,7 +1,11 @@
 # Meet App
-To build a serverless, progressive web application (PW) with React using a test-driven development (TDD) technique. The application uses the Google Calendar API to fetch upcoming events.
+This is a serverless, progressive web application (PWA) with React using a test-driven development (TDD) technique. The application is using the Google Calendar API to fetch upcoming full-stack meetup events.
 
-<b>[LIVE DEMO](https://koola123.github.io/meet/)</b>
+This site was built using <strong>Github Pages</strong>.
+
+<br>
+
+<strong>[LIVE DEMO](https://koola123.github.io/meet/)</strong>
 
 ![Meet App Image](img/meet.png)
 ![Meet App Image](img/meet1.png)
@@ -67,7 +71,7 @@ npm install
 npm run start
 ```
 
-Don't forget to also install nodejs LTS or the latest version.
+<strong> ⚠️ Don't forget to also install nodejs LTS or the latest version!</strong>
 
 
 <br>
