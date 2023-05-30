@@ -8,8 +8,6 @@ This site was built using <strong>Github Pages</strong>.
 <strong>[LIVE DEMO](https://koola123.github.io/meet/)</strong>
 
 ![Meet App Image](img/meet.png)
-![Meet App Image](img/meet1.png)
-![Meet App Image](img/meet2.png)
 
 # 🎯 Technology stack:
 
