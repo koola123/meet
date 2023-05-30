@@ -58,7 +58,7 @@ that I know what events are organized in which city.
 
 <br>
 
-# 🛠 Installation:
+## 🛠 Installation:
 
 #### Prerequisites / Getting started
 
@@ -68,7 +68,7 @@ cd meet
 npm install
 npm run start
 ```
-# ⚠️ Important:
+### ⚠️ Important:
 <strong>Don't forget to also install nodejs LTS or the latest version!</strong>
 
 
