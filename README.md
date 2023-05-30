@@ -9,7 +9,7 @@ This site was built using <strong>Github Pages</strong>.
 
 ![Meet App Image](img/meet.png)
 
-# 🎯 Technology stack:
+# Technology stack:
 
 - Serverless functions (AWS lambda) for the authorization server instead of using a traditional server.
 - OAuth2 Log-in function with Google account
